@@ -18,8 +18,8 @@ public class EditItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_item);
-        pos = getIntent().getIntExtra("pos", 0);
-        String data = getIntent().getStringExtra("data");
+        pos = getIntent().getIntExtra("itemPos", 0);
+        String data = getIntent().getStringExtra("itemTxt");
         EditText etEditItem = (EditText) findViewById(R.id.etEditItem);
         etEditItem.setText(data);
         etEditItem.setCursorVisible(true);
@@ -38,8 +38,8 @@ public class EditItemActivity extends AppCompatActivity {
         // Prepare data intent
         Intent data = new Intent();
         // Pass relevant data back as a result
-        data.putExtra("data", etName.getText().toString());
-        data.putExtra("pos", pos);
+        data.putExtra("itemTxt", etName.getText().toString());
+        data.putExtra("itemPos", pos);
         data.putExtra("code", 200); // ints work too
         // Activity finished ok, return the data
         setResult(RESULT_OK, data); // set result code and bundle data for response

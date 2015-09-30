@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 launchComposeView(position, items.get(position));
@@ -108,12 +107,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // ActivityOne.java
-    public void launchComposeView(int pos, String data) {
+    public void launchComposeView(int pos, String text) {
         // first parameter is the context, second is the class of the activity to launch
         Intent i = new Intent(MainActivity.this, EditItemActivity.class);
         // put "extras" into the bundle for access in the second activity
-        i.putExtra("pos", pos);
-        i.putExtra("data", data);
+        i.putExtra("itemPos", pos);
+        i.putExtra("itemtTxt", text);
         // brings up the second activity
         startActivityForResult(i, REQUEST_CODE);
     }
@@ -123,8 +122,8 @@ public class MainActivity extends AppCompatActivity {
         // REQUEST_CODE is defined above
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
             // Extract name value from result extras
-            String text = data.getExtras().getString("data");
-            int pos = data.getExtras().getInt("pos", 0);
+            String text = data.getExtras().getString("itemPos");
+            int pos = data.getExtras().getInt("itemTxt", 0);
             // Toast the name to display temporarily on screen
             items.set(pos, text);
             itemsAdapter.notifyDataSetChanged();
